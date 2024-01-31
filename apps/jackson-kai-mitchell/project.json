@@ -1,0 +1,88 @@
+{
+  "name": "jackson-kai-mitchell",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/jackson-kai-mitchell/src",
+  "prefix": "jackson-kai-mitchell",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/jackson-kai-mitchell",
+        "index": "apps/jackson-kai-mitchell/src/index.html",
+        "main": "apps/jackson-kai-mitchell/src/main.ts",
+        "polyfills": "apps/jackson-kai-mitchell/src/polyfills.ts",
+        "tsConfig": "apps/jackson-kai-mitchell/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/jackson-kai-mitchell/src/favicon.ico",
+          "apps/jackson-kai-mitchell/src/assets"
+        ],
+        "styles": ["apps/jackson-kai-mitchell/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/jackson-kai-mitchell/src/environments/environment.ts",
+              "with": "apps/jackson-kai-mitchell/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "jackson-kai-mitchell:build:production"
+        },
+        "development": {
+          "buildTarget": "jackson-kai-mitchell:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "jackson-kai-mitchell:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/jackson-kai-mitchell"],
+      "options": {
+        "jestConfig": "apps/jackson-kai-mitchell/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
